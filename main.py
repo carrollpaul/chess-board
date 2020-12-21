@@ -20,25 +20,8 @@ DISCORD_SERVER_ID = os.getenv('DISCORD_SERVER_ID')
 DISCORD_CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 CHESS_GAME_ID = os.getenv('CHESS_GAME_ID')
 
-# CHESS STUFF HERE
-
-session = berserk.TokenSession(LICHESS_TOKEN)
-chess_client = berserk.Client(session)
-board = chess.Board()
-game = chess_client.games.export(CHESS_GAME_ID)
-moves = [move for move in game['moves'].split()]
-
-for move in moves:
-    board.push_san(move)
-
-board_svg = chess.svg.board(board)
-with open('board.svg', 'w') as f:
-    f.write(board_svg)
-with open('board.svg', 'rb') as f:
-    board_png = cairosvg.svg2png(file_obj=f, write_to='board.png')
-
-'''
 # DISCORD STUFF HERE
+
 discord_client = discord.Client()
 
 @discord_client.event
