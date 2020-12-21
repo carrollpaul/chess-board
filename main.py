@@ -52,4 +52,4 @@ async def on_message(message):
             board_png = cairosvg.svg2png(file_obj=f, write_to='board.png')
         await channel.send(file=discord.File('board.png'))
 
-discord_client.run(DISCORD_TOKEN)'''
+discord_client.run(DISCORD_TOKEN)
