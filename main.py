@@ -53,3 +53,7 @@ async def on_message(message):
         await channel.send(file=discord.File('board.png'))
 
 discord_client.run(DISCORD_TOKEN)
+
+
+# TODO: Include which player is which color in Discord post
+# TODO: Post image every time a move is made
