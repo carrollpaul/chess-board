@@ -38,7 +38,7 @@ async def on_ready():
     print(f'{discord_client.user} has connected to Discord!')
 
     channel = discord_client.get_channel(DISCORD_CHANNEL_ID)
-    stream = chess_client.board.stream_game_state(CHESS_GAME_ID)\
+    stream = chess_client.board.stream_game_state(CHESS_GAME_ID)
 
     for event in stream:
         moves = [move for move in event['state']['moves'].split()] # Get list of moves in game state
