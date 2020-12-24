@@ -41,7 +41,7 @@ async def on_ready():
     stream = chess_client.board.stream_game_state(CHESS_GAME_ID)
 
     for event in stream:
-        if event.has_key('state'):
+        if 'state' in event:
             moves = [move for move in event['state']['moves'].split()] # Get list of moves in game state
             for move in moves:
                 board.push_san(move) # Add each move to the board
@@ -51,8 +51,8 @@ async def on_ready():
             with open('board.svg', 'rb') as f: 
                 board_png = cairosvg.svg2png(file_obj=f, write_to='board.png') # Convert .svg to .png
             
-            white = game['white'].get('name') # Get white player
-            black = game['black'].get('name') # Get black player
+            white = game['players']['white']['user'].get('name') # Get white player
+            black = game['players']['black']['user'].get('name') # Get black player
             message = f'White pieces: {white}\nBlack pieces: {black}\nTurn #: {len(moves)}\n'
             await channel.send(content=message, file=discord.File('board.png')) # Post board image to Discord channel
 
@@ -66,8 +66,8 @@ async def on_ready():
             with open('board.svg', 'rb') as f: 
                 board_png = cairosvg.svg2png(file_obj=f, write_to='board.png') # Convert .svg to .png
             
-            white = game['white'].get('name') # Get white player
-            black = game['black'].get('name') # Get black player
+            white = game['players']['white']['user'].get('name') # Get white player
+            black = game['players']['black']['user'].get('name') # Get black player
             message = f'White pieces: {white}\nBlack pieces: {black}\nTurn #: {len(moves)}\n'
             await channel.send(content=message, file=discord.File('board.png')) # Post board image to Discord channel
         
